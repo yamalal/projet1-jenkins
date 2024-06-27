@@ -8,10 +8,12 @@ pipeline{
 //     SERVER_USER = 'root'
 //     SERVER_IP = '192.168.15.89'
 //   }
- stages {
+ stages 
+ {
     stage('check') {
         steps {
-        sh 'npm --version'
+        nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+          sh 'npm config ls'
         }
     }
 
@@ -62,4 +64,5 @@ pipeline{
 //     // }
 //   }
   
+} 
 }

@@ -2,7 +2,7 @@ pipeline{
   agent any
 
   tools {
-    nodejs 'node22-3'
+    nodejs 'node20-11'
   }
 //   environment {
 //     SERVER_USER = 'root'

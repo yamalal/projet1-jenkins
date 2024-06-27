@@ -11,7 +11,7 @@ pipeline{
  stages {
     stage('check') {
         steps {
-          sh 'node -v'
+        sh 'npm --version'
         }
     }
 

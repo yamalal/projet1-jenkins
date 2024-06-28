@@ -46,16 +46,16 @@ pipeline{
         }
       }
     }
-    // stage('Test e2e'){
-    //   steps {
-    //     dir('server') {
-    //       sh 'node index.js &' 
-    //     }
-    //     dir('client') {
-    //       sh 'NO_COLOR=1 npm run test:e2e' 
-    //     }
-    //   }
-    // }
+    stage('Test e2e'){
+      steps {
+        dir('server') {
+          sh 'node index.js &' 
+        }
+        dir('client') {
+          sh 'NO_COLOR=1 npm run test:e2e' 
+        }
+      }
+    }
 
     // stage('Couverture codecov') {
     //   steps {

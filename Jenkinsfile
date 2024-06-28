@@ -1,21 +1,44 @@
-pipeline{
-  agent any
+pipeline {
+    agent any
 
-  tools {
-    nodejs 'node20-11'
-  }
-//   environment {
-//     SERVER_USER = 'root'
-//     SERVER_IP = '192.168.15.89'
-//   }
-  stages {
-    stage('test') {
-        steps {
-            sh 'node -v'
+    environment {
+        NODEJS_HOME = tool name: 'Node 6.x', type: 'NodeJSInstallation'
+        PATH = "${NODEJS_HOME}/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Setup') {
+            steps {
+                script {
+                    // Vérifiez que Node.js est bien installé
+                    sh 'node -v'
+                    sh 'npm -v'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    // Ajoutez vos étapes de build ici
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
         }
     }
-  }
 }
+
+// pipeline{
+//   agent any
+ 
+//   tools { 
+//     nodejs 'node20-11'
+//   }
+// //   environment {
+// //     SERVER_USER = 'root'
+// //     SERVER_IP = '192.168.15.89'
+// //   }
+ 
 //  stages {
 //     stage('Check backend'){
 //       steps {
@@ -50,6 +73,16 @@ pipeline{
 //       steps {
 //         dir('client') {
 //           sh 'npm run build' 
+//         }
+//       }
+//     }
+//     stage('Test e2e'){
+//       steps {
+//         dir('server') {
+//           sh 'node index.js &' 
+//         }
+//         dir('client') {
+//           sh 'NO_COLOR=1 npm run test:e2e' 
 //         }
 //       }
 //     }

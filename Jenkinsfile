@@ -39,13 +39,13 @@ pipeline{
       }
     }
 
-    // stage('Build frontend'){
-    //   steps {
-    //     dir('client') {
-    //       sh 'npm run build' 
-    //     }
-    //   }
-    // }
+    stage('Build frontend'){
+      steps {
+        dir('client') {
+          sh 'npm run build' 
+        }
+      }
+    }
     // stage('Test e2e'){
     //   steps {
     //     dir('server') {

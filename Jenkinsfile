@@ -54,6 +54,7 @@ pipeline{
           sh 'node index.js &' 
         }
         dir('client') {
+          sh 'xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24"'
           sh 'NO_COLOR=1 npm run test:e2e' 
         }
       }

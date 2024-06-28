@@ -49,6 +49,9 @@ pipeline{
     stage('Test e2e'){
       steps {
         dir('server') {
+          lock("cypress-e2e-tests-${env.NODE_NAME}") {
+            sh 'docker run -v $PWD:/e2e -w /e2e cypress/included:3.4.0'
+          }
           sh 'node index.js &' 
         }
         dir('client') {

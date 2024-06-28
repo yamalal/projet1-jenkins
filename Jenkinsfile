@@ -46,18 +46,40 @@ pipeline{
         }
       }
     }
-    stage('Test e2e'){
-      steps {
-        wrap([$class: 'Xvfb']) {
-        dir('server') {
-          sh 'node index.js &' 
-        }
-        dir('client') {
-          sh 'NO_COLOR=1 npm run test:e2e' 
-        }
-      }
-    }
-    } 
+    // stage('Test and2end'){
+    //   matrix {
+    //     axes {
+    //       axis {
+    //         name 'BROWSER'
+    //         values 'chrome'
+    //       }
+    //     }
+    //     stages {
+    //       stage('e2e') {
+    //         steps {
+    //           dir('server')
+    //             sh 'node index.js &' 
+    //          }
+    //          dir('client') {
+    //            sh 'NO_COLOR=1 npm run test:e2e' 
+    //          }
+    //         }
+    //       }
+    //     }  
+    //   }
+
+    // stage('Test e2e'){
+    //   steps {
+    //     wrap([$class: 'Xvfb']) {
+    //     dir('server') {
+    //       sh 'node index.js &' 
+    //     }
+    //     dir('client') {
+    //       sh 'NO_COLOR=1 npm run test:e2e' 
+    //     }
+    //   }
+    // }
+    // } 
 
     // stage('Couverture codecov') {
     //   steps {

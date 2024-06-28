@@ -29,15 +29,15 @@ pipeline{
       //  }
       // }   
     }
-    // stage('Check frontend'){
-    //   steps {
-    //     dir('client') {
-    //       sh 'npm ci --cache .npm --prefer-offline'
-    //       sh 'npm run lint'
-    //       sh 'npm audit'  
-    //     }
-    //   }
-    // }
+    stage('Check frontend'){
+      steps {
+        dir('client') {
+          sh 'npm ci --cache .npm --prefer-offline'
+          sh 'npm run lint'
+          sh 'npm audit'  
+        }
+      }
+    }
 
     // stage('Build frontend'){
     //   steps {

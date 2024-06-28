@@ -47,21 +47,17 @@ pipeline{
       }
     }
     stage('Test e2e'){
-      wrap([$class: 'Xvfb']) {
-        steps {
-          dir('server') {
-          
-          // sh 'sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
+      steps {
+        wrap([$class: 'Xvfb']) {
+        dir('server') {
           sh 'node index.js &' 
         }
-          dir('client') {
-          // sh 'xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" npx cypress run'
+        dir('client') {
           sh 'NO_COLOR=1 npm run test:e2e' 
         }
       }
-      }
-   
     }
+    } 
 
     // stage('Couverture codecov') {
     //   steps {
